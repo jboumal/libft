@@ -1,2 +1,2 @@
-# libft
-Coding a C library
+# 19 libft
+This project is about creating a C library.
