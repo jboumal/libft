@@ -32,7 +32,8 @@ SRCS		= ft_isalpha.c \
 			  ft_putstr_fd.c \
 			  ft_putendl_fd.c \
 			  ft_putnbr_fd.c
-SRCS_BONUS		= ft_lstnew.c \
+SRCS		:= $(addprefix src/,$(SRCS))
+SRCS_BONUS	= ft_lstnew.c \
 			  ft_lstadd_front.c \
 			  ft_lstsize.c \
 			  ft_lstlast.c \
@@ -41,6 +42,7 @@ SRCS_BONUS		= ft_lstnew.c \
 			  ft_lstclear.c \
 			  ft_lstiter.c \
 			  ft_lstmap.c
+SRCS_BONUS := $(addprefix src/,$(SRCS_BONUS))
 OBJS		= ${SRCS:.c=.o}
 OBJS_BONUS	= ${SRCS_BONUS:.c=.o}
 NAME		= libft.a
@@ -48,7 +50,7 @@ CC			= gcc
 RM			= rm -f
 CFLAGS		= -Wall -Wextra -Werror
 .c.o:
-			${CC} ${CFLAGS} -Ilibft.h -c $< -o ${<:.c=.o}
+			${CC} ${CFLAGS} -Iinclude -c $< -o ${<:.c=.o}
 $(NAME):	${OBJS}
 			ar rc $(NAME) ${OBJS}
 all:		$(NAME)
