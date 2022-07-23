@@ -48,21 +48,14 @@ OBJS_BONUS	= ${SRCS_BONUS:.c=.o}
 NAME		= libft.a
 CC			= gcc
 RM			= rm -f
-BONUS		= 0
-CFLAGS		= -Wall -Wextra -Werror -Iinclude
-
-$(NAME):	${OBJS}
-ifeq ($(BONUS), 0)
-				ar rc $(NAME) ${OBJS}
-else
-				ar rc $(NAME) ${OBJS} ${OBJS_BONUS}
-endif
+CFLAGS		= -Wall -Wextra -Werror
 .c.o:
 			${CC} ${CFLAGS} -Iinclude -c $< -o ${<:.c=.o}
+$(NAME):	${OBJS}
+			ar rc $(NAME) ${OBJS}
 all:		$(NAME)
 bonus:		${OBJS_BONUS}
-			$(eval BONUS = 1)
-			make all
+			@make OBJS="${OBJS_BONUS}" all
 clean:
 			${RM} ${OBJS} ${OBJS_BONUS}
 fclean:		clean
